@@ -118,7 +118,7 @@ function render() {
     const emptyMessages = {
       all: "還沒有任何待辦事項，新增一個吧！",
       active: "沒有未完成的待辦事項。",
-      completed: "沒有已完成的待辦事項。",
+      completed: "目前沒有符合「已完成」篩選的事項。待辦事項並未刪除；切回「全部」即可查看。",
     };
     emptyState.textContent = emptyMessages[activeFilter];
   }
