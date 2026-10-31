@@ -6,6 +6,7 @@ const input = document.getElementById("todo-input");
 const list = document.getElementById("todo-list");
 const emptyState = document.getElementById("empty-state");
 const remainingCount = document.getElementById("remaining-count");
+const clearCompletedButton = document.getElementById("clear-completed");
 const filters = document.getElementById("todo-filters");
 const themeToggle = document.getElementById("theme-toggle");
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
@@ -125,6 +126,7 @@ function render() {
 
   const remaining = todos.filter((todo) => !todo.completed).length;
   remainingCount.textContent = `未完成:${remaining} 項`;
+  clearCompletedButton.disabled = !todos.some((todo) => todo.completed);
 }
 
 // 使用時間與隨機值組合，產生不重複的待辦事項識別碼。
@@ -176,6 +178,22 @@ list.addEventListener("click", (event) => {
 
   const todoId = item.dataset.id;
   updateTodos(todos.filter((todo) => todo.id !== todoId));
+});
+
+clearCompletedButton.addEventListener("click", () => {
+  const completedCount = todos.filter((todo) => todo.completed).length;
+  if (completedCount === 0) {
+    return;
+  }
+
+  const confirmed = window.confirm(
+    `確定要清除 ${completedCount} 項已完成的待辦事項嗎？此操作無法復原。`
+  );
+  if (!confirmed) {
+    return;
+  }
+
+  updateTodos(todos.filter((todo) => !todo.completed));
 });
 
 filters.addEventListener("click", (event) => {
