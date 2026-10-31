@@ -1,0 +1,244 @@
+:root {
+  color-scheme: light;
+  --color-page: #f3f5f9;
+  --color-card: #ffffff;
+  --color-row: #f8f9fc;
+  --color-text: #20283a;
+  --color-muted: #788196;
+  --color-border: #e6e9f0;
+  --color-accent: #5b65d8;
+  --color-accent-hover: #4852c3;
+  --color-danger: #c94f61;
+  --color-danger-hover: #a93549;
+  --shadow-card: 0 18px 48px rgb(34 45 80 / 9%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  min-height: 100vh;
+  margin: 0;
+  padding: 48px 20px;
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 18% 8%, rgb(91 101 216 / 8%), transparent 32%),
+    var(--color-page);
+  color: var(--color-text);
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app {
+  width: min(100%, 520px);
+  padding: 36px;
+  border: 1px solid rgb(230 233 240 / 85%);
+  border-radius: 22px;
+  background: var(--color-card);
+  box-shadow: var(--shadow-card);
+}
+
+.app-header {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(1.7rem, 6vw, 2rem);
+  letter-spacing: 0.04em;
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.todo-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.todo-input {
+  width: 100%;
+  min-width: 0;
+  padding: 13px 15px;
+  border: 1px solid var(--color-border);
+  border-radius: 11px;
+  outline: none;
+  background: var(--color-row);
+  color: var(--color-text);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.todo-input::placeholder {
+  color: #a1a8b7;
+}
+
+.todo-input:focus-visible {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgb(91 101 216 / 15%);
+}
+
+.btn-add {
+  flex: 0 0 auto;
+  padding: 0 21px;
+  border: 0;
+  border-radius: 11px;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.btn-add:hover {
+  background: var(--color-accent-hover);
+}
+
+.btn-add:active {
+  transform: translateY(1px);
+}
+
+.todo-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todo-item {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-row);
+}
+
+.todo-checkbox {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  margin: 0;
+  accent-color: var(--color-accent);
+  cursor: pointer;
+}
+
+.todo-text {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+
+.todo-item.completed .todo-text {
+  color: var(--color-muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.btn-delete {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-danger);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background: rgb(201 79 97 / 9%);
+  color: var(--color-danger-hover);
+}
+
+.btn-add:focus-visible,
+.btn-delete:focus-visible,
+.todo-checkbox:focus-visible {
+  outline: 3px solid rgb(91 101 216 / 35%);
+  outline-offset: 2px;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 30px 12px;
+  border: 1px dashed var(--color-border);
+  border-radius: 12px;
+  color: var(--color-muted);
+  line-height: 1.7;
+  text-align: center;
+}
+
+.empty-state[hidden] {
+  display: none;
+}
+
+.app-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 24px 14px;
+  }
+
+  .app {
+    padding: 26px 20px;
+    border-radius: 18px;
+  }
+
+  .todo-form {
+    gap: 8px;
+  }
+
+  .btn-add {
+    padding: 0 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
