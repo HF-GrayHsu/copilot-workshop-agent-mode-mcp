@@ -285,6 +285,7 @@ h1 {
 .btn-theme:focus-visible,
 .btn-add:focus-visible,
 .btn-delete:focus-visible,
+.btn-clear-completed:focus-visible,
 .filter-button:focus-visible,
 .todo-checkbox:focus-visible {
   outline: 3px solid var(--color-accent-focus);
@@ -307,12 +308,36 @@ h1 {
 
 .app-footer {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   margin-top: 24px;
   padding-top: 18px;
   border-top: 1px solid var(--color-border);
   color: var(--color-muted);
   font-size: 0.9rem;
+}
+
+.btn-clear-completed {
+  padding: 7px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-row);
+  color: var(--color-danger);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.btn-clear-completed:hover:not(:disabled) {
+  border-color: var(--color-danger);
+  background: var(--color-danger-background);
+  color: var(--color-danger-hover);
+}
+
+.btn-clear-completed:disabled {
+  color: var(--color-muted);
+  cursor: not-allowed;
 }
 
 .sr-only {
